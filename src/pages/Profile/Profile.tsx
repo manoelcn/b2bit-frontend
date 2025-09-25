@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProfile, getTokens, removeTokens } from "../../services/api";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+} from "../../components/ui/card";
+import { Button } from "../../components/ui/button"
+import { Input } from "../../components/ui/input"
+import { Label } from "../../components/ui/label"
+import { AlertCircleIcon } from "lucide-react"
+
 
 interface UserProfile {
     id: string;
@@ -70,21 +81,46 @@ const Profile: React.FC = () => {
     }
 
     return (
-        <div>
-            <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <h1>Perfil do Usuário</h1>
-                <button onClick={handleLogout}>Logout</button>
+        <div className="w-full max-w-sm">
+
+            <header className="flex justify-end items-center w-full max-w-sm mb-6">
+                <Button
+                    variant="azul-b2bit"
+                    size="lg"
+                    onClick={handleLogout}
+                    className="w-full sm:w-auto"
+                >
+                    Logout
+                </Button>
             </header>
-
             <div>
-                <h2>Informações Pessoais</h2>
+                <Card className="w-full max-w-sm">
+                    <CardHeader className="flex flex-col items-center justify-center">
+                        <p className="text-center text-sm">Profile picture</p>
+                        {profile.avatar && (
+                            <img src={profile.avatar.medium} alt="Avatar" className="w-16 h-16 rounded-lg object-cover" />
+                        )}
+                    </CardHeader>
+                    <CardContent>
+                        <div className="flex flex-col gap-6">
+                            <div className="grid gap-2">
+                                <Label htmlFor="name">Your Name</Label>
+                                <Input id="name" type="text" value={profile.name} className="font-light" readOnly />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="email">Your E-mail</Label>
+                                <Input id="email" type="email" value={profile.email} className="font-light" readOnly />
+                            </div>
+                        </div>
 
-                {profile.avatar && (
-                    <img src={profile.avatar.medium} alt="Avatar" style={{ width: 100, height: 100, borderRadius: "50%" }} />
-                )}
-
-                <p><strong>Nome:</strong> {profile.name} {profile.last_name}</p>
-                <p><strong>Email:</strong> {profile.email}</p>
+                        {error && (<div className="mt-4 rounded-md bg-red-50 p-3 border border-red-200">
+                            <div className="flex items-center gap-2">
+                                <AlertCircleIcon className="h-4 w-4 text-red-600" />
+                                <span className="text-sm font-medium text-red-800">{error}</span>
+                            </div>
+                        </div>)}
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );
