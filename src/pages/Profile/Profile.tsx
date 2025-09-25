@@ -10,6 +10,7 @@ import { Button } from "../../components/ui/button"
 import { Input } from "../../components/ui/input"
 import { Label } from "../../components/ui/label"
 import { AlertCircleIcon } from "lucide-react"
+import { Loader2Icon } from "lucide-react"
 
 interface UserProfile {
     id: string;
@@ -67,15 +68,28 @@ const Profile: React.FC = () => {
     };
 
     if (loading) {
-        return <div>Loading profile...</div>;
+        return <Button size="default" variant="azul-b2bit">
+            <Loader2Icon className="animate-spin" />
+            Loading profile...
+        </Button>
     }
 
     if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="mt-4 rounded-md bg-red-50 p-3 border border-red-200">
+            <div className="flex items-center gap-2">
+                <AlertCircleIcon className="h-4 w-4 text-red-600" />
+                <span className="text-sm font-medium text-red-800">{error}.</span>
+            </div>
+        </div>;
     }
 
     if (!profile) {
-        return <div>Profile not found.</div>;
+        return <div className="mt-4 rounded-md bg-red-50 p-3 border border-red-200">
+            <div className="flex items-center gap-2">
+                <AlertCircleIcon className="h-4 w-4 text-red-600" />
+                <span className="text-sm font-medium text-red-800">Profile not found.</span>
+            </div>
+        </div>;
     }
 
     return (
