@@ -4,14 +4,12 @@ import { getProfile, getTokens, removeTokens } from "../../services/api";
 import {
     Card,
     CardContent,
-    CardFooter,
     CardHeader,
 } from "../../components/ui/card";
 import { Button } from "../../components/ui/button"
 import { Input } from "../../components/ui/input"
 import { Label } from "../../components/ui/label"
 import { AlertCircleIcon } from "lucide-react"
-
 
 interface UserProfile {
     id: string;
@@ -82,14 +80,12 @@ const Profile: React.FC = () => {
 
     return (
         <div className="w-full max-w-sm">
-
-            <header className="flex justify-end items-center w-full max-w-sm mb-6">
+            <header className="fixed top-0 left-0 w-full h-16 bg-white shadow-sm z-50 flex items-center justify-end px-4">
                 <Button
                     variant="azul-b2bit"
                     size="lg"
                     onClick={handleLogout}
-                    className="w-full sm:w-auto"
-                >
+                    className="w-full max-w-xs">
                     Logout
                 </Button>
             </header>
