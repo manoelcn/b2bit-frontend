@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# B2Bit Frontend
+Este projeto, chamado **b2bit-frontend**, é uma aplicação web de front-end desenvolvida como parte de um desafio de processo seletivo.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A aplicação é construída com:
+- React: usado para criar a interface da aplicação com componentes interativos e reutilizáveis.
+- TypeScript: adiciona tipagem ao JavaScript, prevenindo erros e tornando o código mais confiável.
+- Vite: ferramenta de desenvolvimento e build que permite rodar a aplicação rapidamente.
+- Tailwind CSS: framework de classes utilitárias para estilizar componentes de forma rápida e consistente.
+- Shadcn/ui: biblioteca de componentes prontos e estilizados com Tailwind, acelerando a criação da interface.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades principais
+O foco do projeto é implementar um fluxo de autenticação de usuário. Ele possui duas rotas principais:
+- Página de login (`/login`): o usuário insere e-mail e senha. A aplicação valida as credenciais via API, salva os tokens em caso de sucesso e redireciona para a página de perfil.
+- Página de perfil (`/profile`): rota protegida, acessível apenas por usuários autenticados. Exibe os dados do usuário buscados na API.
+- Logout: encerra a sessão e retorna o usuário à tela de login.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Como executar o projeto
+Este guia vai te ajudar a preparar e rodar a aplicação localmente.
 
-## Expanding the ESLint configuration
+### 1. Pré-requisitos
+Certifique-se de ter instalado:
+- Node.js
+- npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Clonar o repositório
+```bash
+git clone https://github.com/seu-usuario/b2bit-frontend.git
+cd b2bit-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Instalar dependências
+```bash
+npm install
 ```
+
+### 4. Rodar o projeto
+```bash
+npm run dev
+```
+Acesse no navegador: `http://localhost:5173`
+
+### 5. Usar a aplicação
+- Login: insira e-mail e senha
+- Perfil: visualize seus dados
+- Logout: encerre a sessão
